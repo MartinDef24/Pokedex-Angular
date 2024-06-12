@@ -1,0 +1,18 @@
+<div class="row">
+    <div class="col s12 m6 offset-m3">
+        <div class="card">
+            <div class="card-content">
+                <div class="input-field">
+                    <input #searchBox (keyup)="search(searchBox.value)" placeholder="Rechercher un pokémon...">
+                </div>
+                <div class="collection">
+                    @for(pokemon of pokemons$ | async; track pokemon) {
+                        <a (click)="goToDetailPokemon(pokemon)" class="collection-item" style="display: flex;">
+                            <img width="50px" [src]="pokemon.picture" ><span style="margin:auto 10px;"> {{pokemon.name}}</span>
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
