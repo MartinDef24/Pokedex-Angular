@@ -1,28 +1,24 @@
 @if(pokemonList) {
-    <div class="container">
+    <div style="width:90%; margin:auto">
         <div class="row">
             <app-search-pokemon></app-search-pokemon>
-            @for(pokemon of pokemonList; track pokemon) {
-                <div class="col m4 s6">
-                    <div (click)="gotoPokemon(pokemon)" class="card horizontal" pkmBorderCard="blue">
-                        <div class="card-image">
-                            <img [src]="pokemon.picture">
-                        </div>
-                        <div class="card-stacked">
-                            <div class="card-content">
-                                <p>{{ pokemon.name }}</p>
-                                <p><small>N° de pokédex : {{ pokemon.id }}</small></p>
-                                <p><small>{{ pokemon.created | date: 'dd/MM/yyyy' }}</small></p>
-                                @for(type of pokemon.types; track type) {
-                                    <span class="{{type | pokemonTypeColor}}">
-                                        {{type}}
-                                    </span>
-                                }
-                            </div>
+            <div *ngFor="let pokemon of pokemonList" class="col m4 s6">
+                <div (click)="gotoPokemon(pokemon)" class="card horizontal chip" pkmBorderCard="{{pokemon.types[0] | cardColor}}">
+                    <div class="card-image">
+                        <img [src]="pokemon.picture">
+                    </div>
+                    <div class="card-stacked">
+                        <div class="card-content">
+                            <p>{{ pokemon.name }}</p>
+                            <p><small>N° de pokédex : {{ pokemon.id }}</small></p>
+                            <p><small>{{ pokemon.created | date: 'dd/MM/yyyy' }}</small></p>
+                            <span *ngFor="let type of pokemon.types" class="{{type | pokemonTypeColor}}">
+                                {{type}}
+                            </span>
                         </div>
                     </div>
                 </div>
-            }
+            </div>
         </div>
     </div>
     

@@ -50,5 +50,4 @@ export class PokemonTypeColorPipe implements PipeTransform {
     return 'chip ' + color;
   
   }
-
 }
