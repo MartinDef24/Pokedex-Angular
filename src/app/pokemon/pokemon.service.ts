@@ -49,7 +49,7 @@ export class PokemonService {
     )
   }
 
-  getPokemonList() : Observable<Pokemon[]> {
+  getPokemonList() : any {
     return this.httpclient.get<Pokemon[]>('api/pokemons').pipe(
       tap((pokemonList) => this.log(pokemonList)),
       catchError((error) => this.handleError(error, []))
