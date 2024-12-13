@@ -1,32 +1,36 @@
-@if(pokemonList) {
-    <div style="width:90%; margin:auto">
-        <div class="row">
+<div class="mb-5" *ngIf="pokemonList; else elseBlock">
+    <div>
+        <div>
             <app-search-pokemon></app-search-pokemon>
-            <div *ngFor="let pokemon of pokemonList" class="col m4 s6">
-                <div (click)="gotoPokemon(pokemon)" class="card horizontal chip" pkmBorderCard="{{pokemon.types[0] | cardColor}}">
-                    <div class="card-image">
-                        <img [src]="pokemon.picture">
-                    </div>
-                    <div class="card-stacked">
-                        <div class="card-content">
-                            <p>{{ pokemon.name }}</p>
-                            <p><small>N° de pokédex : {{ pokemon.id }}</small></p>
-                            <p><small>{{ pokemon.created | date: 'dd/MM/yyyy' }}</small></p>
-                            <span *ngFor="let type of pokemon.types" class="{{type | pokemonTypeColor}}">
-                                {{type}}
-                            </span>
+            <div class="flex flex-wrap gap-2 w-4/5 justify-between m-auto">
+                <div class="w-64" *ngFor="let pokemon of pokemonList">
+                    <div class="flex my-auto" (click)="gotoPokemon(pokemon)" pkmBorderCard="{{pokemon.types[0] | cardColor}}">
+                        <div class="m-auto">
+                            <img width="110px" [src]="pokemon.picture">
                         </div>
+                        <div class="m-auto">
+                                <p>{{ pokemon.name }}</p>
+                                <p class="mb-0"><small>N° de pokédex : {{ pokemon.id }}</small></p>
+                                <p class="mb-5"><small>{{ pokemon.created | date: 'dd/MM/yyyy' }}</small></p>
+                                <span *ngFor="let type of pokemon.types" class="{{type | pokemonTypeColor}} rounded-2xl px-2 py-1 mr-2">
+                                    <small>{{type}}</small>
+                                </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-64 h-48 border-4 cursor-pointer" (click)="gotoCreatePokemon()">
+                    <div  class="text-center">
+                        <i class="fa-solid fa-plus text-7xl text-gray-300 mt-12"></i>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
-    <a class="btn-floating btn-large waves-effect red waves-light z-depth-3" 
-    style="position: fixed; bottom: 25px; right: 25px;" 
-    (click)="gotoCreatePokemon()">+</a>
-} @else {
-    <h3 class="center"><app-loader></app-loader></h3>
-}
+</div>
+
+<ng-template #elseBlock>
+    <h3><app-loader></app-loader></h3>
+</ng-template>
+
 
 

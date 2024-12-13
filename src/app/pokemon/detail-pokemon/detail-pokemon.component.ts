@@ -4,7 +4,7 @@ import { Pokemon } from '../Pokemon';
 import { PokemonService } from '../pokemon.service';
 import { PokemonTypeColorPipe } from '../pokemon-type-color.pipe';
 import { LoaderComponent } from '../loader/loader.component';
-import { DatePipe } from '@angular/common';
+import {DatePipe, NgIf} from '@angular/common';
 import { Title } from '@angular/platform-browser';
 
 @Component({
@@ -12,7 +12,7 @@ import { Title } from '@angular/platform-browser';
     templateUrl: './detail-pokemon.component.html',
     styles: ``,
     standalone: true,
-    imports: [LoaderComponent, PokemonTypeColorPipe, DatePipe]
+    imports: [LoaderComponent, PokemonTypeColorPipe, DatePipe, NgIf]
 })
 
 export class DetailPokemonComponent implements OnInit {

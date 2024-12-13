@@ -1,27 +1,24 @@
-<div class='row'>
-    <div class="col s12 m4 offset-m4">
-    <div class="card hoverable" style="padding:20px">
-      <div class="card-content center">
-        <span class="card-title">Page de connexion</span>
-        <p><em>{{message}}</em></p>
-      </div>
-            <form #loginForm="ngForm">
-          <div>
-                    <label for="name">Name</label>
-            <input type="text" id="name" [(ngModel)]="name" name="name" required>
-          </div>
-          <div>
-            <label for="password">Password</label>
-            <input type="password" id="password" [(ngModel)]="password" name="password" required>
-          </div>
+<div class="w-max m-auto mt-10 border-2 p-5 rounded-2xl">
+    <div class="mb-5 text-center"><em>{{message}}</em></div>
+    <div class="text-center">
+        <form #loginForm="ngForm">
+            <div class="mb-2">
+                <label class="mr-2" for="name">Name</label>
+                <input class="border-2 rounded" type="text" id="name" [(ngModel)]="name" name="name" required>
+            </div>
+            <div class="mr-6">
+                <label class="mr-2" for="password">Password</label>
+                <input class="border-2 rounded" type="password" id="password" [(ngModel)]="password" name="password" required>
+            </div>
         </form>
-      <div class="card-action center">
-        @if(auth.isLoggedIn) { 
-            <a (click)="logout()" >Se déconnecter</a>
-        } @else {
-            <a (click)="login()" class="waves-effect waves-light btn">Se connecter</a>
-        }        
-      </div>
+        <div class="mt-10" *ngIf="auth.isLoggedIn; else elseBlock">
+            <a class="p-3 bg-blue-700 rounded-2xl text-white pointer-cursor" (click)="logout()">Se déconnecter</a>
+        </div>
+        <ng-template #elseBlock>
+            <div class="mt-10">
+                <a class="p-3 bg-blue-700 rounded-2xl text-white pointer-cursor" (click)="login()">Se connecter</a>
+            </div>
+
+        </ng-template>
     </div>
-    </div>
-    </div>
+</div>

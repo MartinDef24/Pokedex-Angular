@@ -6,8 +6,8 @@ import { PokemonTypeColorPipe } from '../pokemon-type-color.pipe';
 import { LoaderComponent } from '../loader/loader.component';
 import { BorderCardDirective } from '../border-card.directive';
 import { SearchPokemonComponent } from '../search-pokemon/search-pokemon.component';
-import {DatePipe, NgForOf} from '@angular/common';
-import {CardColorPipe} from "../../card-color.pipe";
+import {DatePipe, NgForOf, NgIf} from '@angular/common';
+import {CardColorPipe} from "../card-color.pipe";
 
 @Component({
     selector: 'app-list-pokemon',
@@ -21,6 +21,7 @@ import {CardColorPipe} from "../../card-color.pipe";
         DatePipe,
         NgForOf,
         CardColorPipe,
+        NgIf,
     ],
 })
 export class ListPokemonComponent implements OnInit {

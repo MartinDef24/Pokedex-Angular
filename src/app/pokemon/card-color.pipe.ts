@@ -29,7 +29,7 @@ export class CardColorPipe implements PipeTransform {
         color = 'blue';
         break;
       case 'Poison':
-        color = 'deep-purple';
+        color = 'purple';
         break;
       case 'Fée':
         color = 'pink';
@@ -38,7 +38,7 @@ export class CardColorPipe implements PipeTransform {
         color = 'deep-purple';
         break;
       case 'Electrik':
-        color = 'lime';
+        color = 'yellow';
         break;
       case 'Combat':
         color = 'deep-orange';

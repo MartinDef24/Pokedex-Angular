@@ -1,52 +1,48 @@
-@if(pokemon) {
-  <div class="row">
-    <div class="col s12 m8 offset-m2">
-    <h2 class="header center">{{ pokemon.name }}</h2>
-    <div class="card horizontal hoverable">
-      <div class="card-image">
-        <img [src]="pokemon.picture">
-      </div>
-      <div class="card-stacked">
-        <div class="card-content">
-          <table class="bordered striped">
+<div *ngIf="pokemon; else elseBlock" class="border-2 w-3/4 mb-10 m-auto mt-10 rounded-2xl">
+    <div class="text-center mt-5 mb-5">
+        <h2 class="text-3xl">{{ pokemon.name }}</h2>
+    </div>
+    <div>
+        <img class="m-auto" [src]="pokemon.picture">
+    </div>
+    <div>
+        <table class="border-2 m-auto">
             <tbody>
-              <tr>
-                <td>Nom</td>
-                <td><strong>{{ pokemon.name }}</strong></td>
+              <tr class="border-2">
+                <td class="border-2 p-2">Nom</td>
+                <td class="border-2 p2 text-center"><strong>{{ pokemon.name }}</strong></td>
               </tr>
-              <tr>
-                <td>Points de vie</td>
-                <td><strong>{{ pokemon.hp }}</strong></td>
+              <tr class="border-2">
+                <td class="border-2 p-2">Points de vie</td>
+                <td class="border-2 p-2 text-center">{{ pokemon.hp }}</td>
               </tr>
-              <tr>
-                <td>Dégâts</td>
-                <td><strong>{{ pokemon.cp }}</strong></td>
+              <tr class="border-2">
+                <td class="border-2 p-2">Dégâts</td>
+                <td class="border-2 p-2 text-center">{{ pokemon.cp }}</td>
               </tr>
-              <tr>
-                <td>Types</td>
-                <td>
+              <tr class="border-2">
+                <td class="border-2 p-3">Types</td>
+                <td class="border-2 p-3 text-center">
                   @for(type of pokemon.types; track type) {
-                    <span class="{{ type | pokemonTypeColor }}">{{ type }}</span>
+                    <span class="{{ type | pokemonTypeColor }} rounded-2xl py-2 px-4 mr-3">{{ type }}</span>
                   }
                 </td>
               </tr>
-              <tr>
-                <td>Date de création</td>
-                <td><em>{{ pokemon.created | date:"dd/MM/yyyy" }}</em></td>
+              <tr class="border-2">
+                <td class="border-2 p-2">Date de création</td>
+                <td class="border-2 p-2 text-center"><em>{{ pokemon.created | date:"dd/MM/yyyy" }}</em></td>
               </tr>
             </tbody>
-          </table>
-        </div>
-        <div class="card-action">
-          <a (click)="goToPokedex()">Retour</a>
-          <a (click)="goToEditPokemon(pokemon)">Editer</a>
-          <a (click)="deletePokemon(pokemon)">Supprimer</a>
-        </div>
-      </div>
+        </table>
     </div>
+    <div class="m-auto flex justify-around w-2/4 my-5">
+        <a class="bg-gray-300 rounded-2xl py-2 px-4 cursor-pointer" (click)="goToPokedex()">Retour</a>
+        <a class="bg-yellow-400 rounded-2xl py-2 px-4 cursor-pointer" (click)="goToEditPokemon(pokemon)">Editer</a>
+        <a class="bg-red-700 rounded-2xl py-2 px-4 text-white cursor-pointer" (click)="deletePokemon(pokemon)">Supprimer</a>
     </div>
-    </div>
-} @else {
-  <h4 class="center"><app-loader></app-loader></h4>
-}
+</div>
+<ng-template #elseBlock>
+    <h4 class="center"><app-loader></app-loader></h4>
+</ng-template>
+
    
