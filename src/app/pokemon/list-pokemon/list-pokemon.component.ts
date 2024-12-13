@@ -41,6 +41,8 @@ export class ListPokemonComponent implements OnInit {
   }
 
   ngOnInit() {
+      // @ts-ignore
+      document.getElementById('button-login').textContent ='Logout';
     this.pokemonService.getPokemonList()
     .subscribe(pokemons => {this.pokemonList = pokemons});
   }
