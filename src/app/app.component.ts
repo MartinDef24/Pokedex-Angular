@@ -1,13 +1,28 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import {Router, RouterOutlet} from '@angular/router';
 import {FooterComponent} from "./footer/footer.component";
-import {HeaderComponent} from "./header/header.component";
+import {AuthService} from "./auth.service";
+import {NgIf} from "@angular/common";
 
 @Component({
     selector: 'title-root',
     templateUrl: 'app.component.html',
     standalone: true,
-    imports: [RouterOutlet, FooterComponent, HeaderComponent],
+    imports: [RouterOutlet, FooterComponent, NgIf],
 })
 
-export class AppComponent {}
+export class AppComponent {
+    loggedIn:Boolean = false;
+    constructor(private authService: AuthService, private router:Router) {
+        this.loggedIn = authService.isLoggedIn
+    }
+
+    logout() {
+        this.authService.logout();
+    }
+
+    goToPokedex() {
+        this.router.navigate(['/pokemons']);
+    }
+
+}
