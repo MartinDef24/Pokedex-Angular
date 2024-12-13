@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { Pokemon } from '../Pokemon';
 import { Router } from '@angular/router';
 import { PokemonService } from '../pokemon.service';
@@ -27,8 +27,6 @@ import {CardColorPipe} from "../card-color.pipe";
 export class ListPokemonComponent implements OnInit {
   pokemonList: Pokemon[];
 
-
-
   constructor(private router: Router, private pokemonService: PokemonService) {}
 
   gotoPokemon(pokemon: Pokemon) {
@@ -41,8 +39,6 @@ export class ListPokemonComponent implements OnInit {
   }
 
   ngOnInit() {
-      // @ts-ignore
-      document.getElementById('button-login').textContent ='Logout';
     this.pokemonService.getPokemonList()
     .subscribe(pokemons => {this.pokemonList = pokemons});
   }
