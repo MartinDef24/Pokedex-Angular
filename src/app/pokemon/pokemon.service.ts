@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {ElementRef, Injectable, ViewChild} from '@angular/core';
 import { Pokemon } from './Pokemon';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, catchError, of, tap } from 'rxjs';
@@ -6,6 +6,8 @@ import { Observable, catchError, of, tap } from 'rxjs';
 @Injectable()
 
 export class PokemonService {
+
+  @ViewChild('button-login') el: ElementRef;
 
   constructor(private httpclient: HttpClient) {}
 
@@ -50,10 +52,15 @@ export class PokemonService {
   }
 
   getPokemonList() : Observable<any> {
+    this.changeButtonTexte()
     return this.httpclient.get<Pokemon[]>('api/pokemons').pipe(
       tap((pokemonList) => this.log(pokemonList)),
       catchError((error) => this.handleError(error, []))
     );
+  }
+
+  changeButtonTexte() {
+    this.el.nativeElement.textContent = 'Logout';
   }
 
   getPokemonById(id:number): Observable<Pokemon|undefined> {
